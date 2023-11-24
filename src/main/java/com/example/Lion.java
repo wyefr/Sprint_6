@@ -4,21 +4,24 @@ import java.util.List;
 
 public class Lion {
 
-    boolean hasMane;
+    private boolean hasMane;
+    private Feline feline;
 
-    public Lion(String sex) throws Exception {
+    public Lion(String sex, Feline feline) throws IllegalArgumentException {
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            throw new IllegalArgumentException("Используйте допустимые значения пола животного - самей или самка");
         }
+        this.feline = feline;
     }
 
-    Feline feline = new Feline();
-
     public int getKittens() {
+        if (feline == null) {
+            throw new IllegalStateException("Feline зависимость не была установлена");
+        }
         return feline.getKittens();
     }
 
@@ -27,6 +30,9 @@ public class Lion {
     }
 
     public List<String> getFood() throws Exception {
+        if (feline == null) {
+            throw new IllegalStateException("Feline зависимость не была установлена");
+        }
         return feline.getFood("Хищник");
     }
 }
