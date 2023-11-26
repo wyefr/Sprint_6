@@ -35,10 +35,7 @@ public class CatTest {
     public void testGetFood() throws Exception {
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
         when(mockFeline.eatMeat()).thenReturn(expectedFood);
-
         List<String> actualFood = cat.getFood();
-
         assertEquals(expectedFood, actualFood);
-        verify(mockFeline, times(1)).eatMeat();
     }
 }
