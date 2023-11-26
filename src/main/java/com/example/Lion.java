@@ -3,24 +3,18 @@ package com.example;
 import java.util.List;
 
 public class Lion {
+    private final boolean hasMane;
+    private final Feline feline;
 
-    private boolean hasMane;
-    private Feline feline;
-
-    private Lion() {
-    }
-
-    public static Lion getInstance(String sex, Feline feline) throws IllegalArgumentException {
-        Lion lion = new Lion();
-        lion.feline = feline;
+    public Lion (String sex, Feline feline) throws IllegalArgumentException {
         if ("Самец".equals(sex)) {
-            lion.hasMane = true;
+            hasMane = true;
         } else if ("Самка".equals(sex)) {
-            lion.hasMane = false;
+            hasMane = false;
         } else {
             throw new IllegalArgumentException("Используйте допустимые значения пола животного - самец или самка");
         }
-        return lion;
+        this.feline = feline;
     }
 
     public int getKittens() {
