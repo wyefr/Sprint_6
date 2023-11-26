@@ -23,7 +23,7 @@ public class LionTestParametrized {
         this.isHaveMane = isHaveMane;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0}, {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
             {"Самец", true},
@@ -34,7 +34,7 @@ public class LionTestParametrized {
     @Test
     public void testDoesHaveMane() {
         Feline mockFeline = mock(Feline.class);
-        Lion lion = Lion.getInstance(sex,mockFeline);
+        Lion lion = new Lion(sex,mockFeline);
         assertEquals(isHaveMane, lion.doesHaveMane());
     }
 }
