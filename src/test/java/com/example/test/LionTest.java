@@ -57,4 +57,10 @@ public class LionTest {
         List<String> food = lion.getFood();
         assertEquals(expectedFood, food);
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void testGetFoodWithoutFeline() throws Exception {
+        Lion lion = Lion.getInstance("Самец", null);
+        lion.getFood();
+    }
 }
